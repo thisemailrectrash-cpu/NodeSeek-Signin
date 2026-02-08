@@ -1,6 +1,6 @@
-# Docker Compose Deployment Guide
+# Docker Compose 一键部署指南
 
-这种部署方式可以实现本地自动化定时签到，并支持自动处理验证码。
+这种部署方式可以实现本地自动化定时签到，并支持自动处理验证码。推荐使用 `docker compose up -d --build` 一键启动。
 
 **第一步：克隆项目**
 
@@ -32,7 +32,7 @@ cp .env.example .env
 在存放 `docker-compose.yml` 和 `.env` 文件的目录下，执行以下命令在后台构建并启动服务：
 
 ```bash
-docker-compose up -d
+docker compose up -d --build
 ```
 
 **第四步：查看日志**
@@ -40,7 +40,7 @@ docker-compose up -d
 你可以使用以下命令实时查看容器的日志，以确认服务是否正常运行和签到是否成功：
 
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```
 
 **第五步：停止服务**
@@ -48,5 +48,5 @@ docker-compose logs -f
 如果需要停止并移除服务容器，可以执行以下命令：
 
 ```bash
-docker-compose down
+docker compose down
 ```

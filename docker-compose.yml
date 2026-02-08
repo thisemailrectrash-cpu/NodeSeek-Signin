@@ -4,10 +4,11 @@ services:
     image: nodeseek-signin:latest
     container_name: nodeseek-signin
     command: ["python", "scheduler.py"]
+    init: true
     environment:
       - IN_DOCKER=true
     env_file:
       - .env
     volumes:
       - ./cookie:/app/cookie
-    restart: always
+    restart: unless-stopped

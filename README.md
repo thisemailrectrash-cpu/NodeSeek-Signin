@@ -29,12 +29,38 @@
   - YesCaptcha 商业服务（付费/赠送）
 - 📱 支持多种通知推送渠道(需在blank.yml添加对应变量)
 
-##  快速开始
+##  快速开始（Docker 一键部署）
 
-1. **获取代码**：Fork/Clone 本仓库，或在青龙面板/Cloudflare Worker 等环境中拉取脚本。
-2. **选择部署方式**：根据自己的运行环境（GitHub Actions、Docker、青龙、Cloudflare Worker）跳转到对应文档完成部署。
-3. **配置变量**：按照 [`docs/configuration/config.md`](docs/configuration/config.md) 填写 `NS_COOKIE`、`USERn/PASSn`、验证码与通知变量；验证码方案差异见 [`docs/configuration/solutions.md`](docs/configuration/solutions.md)。
-4. **验证运行**：在目标环境触发一次任务（或运行 `python test_run.py`）确认签到与通知均正常。
+> 推荐使用 Docker Compose 一键部署，适配依赖环境并自动保持 Cookie 持久化。
+
+1. **获取代码**：
+   ```bash
+   git clone https://github.com/yowiv/NodeSeek-Signin.git
+   cd NodeSeek-Signin
+   ```
+2. **准备配置**：
+   ```bash
+   cp .env.example .env
+   ```
+   根据注释填写 `USER1/PASS1` 或 `NS_COOKIE`，并配置验证码方案（`SOLVER_TYPE`、`API_BASE_URL`、`CLIENTT_KEY`）。
+3. **一键启动**：
+   ```bash
+   docker compose up -d --build
+   ```
+4. **查看日志**：
+   ```bash
+   docker compose logs -f
+   ```
+
+更多细节请参考 [`docs/deployment/docker-compose.md`](docs/deployment/docker-compose.md)。
+
+##  其他部署方式
+
+如果你不使用 Docker，也可以选择以下方案：
+
+1. **GitHub Actions**：适合纯云端运行，可结合 `GH_PAT` 自动回写 Cookie。
+2. **青龙面板**：与面板定时任务深度集成，沿用青龙通知配置。
+3. **Cloudflare Worker**：适合无服务器场景，需配合验证码服务。
 
 ## 🧱 部署方式一览
 
